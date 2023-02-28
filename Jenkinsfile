@@ -1,11 +1,11 @@
 pipeline {
     agent {
-  label 'makec'
+  label 'clabel'
     }
     stages{
         stage('get code') {
             steps{
-                git branch: 'main', url: 'https://github.com/ganeshmerwade/git_rep.git'
+                git branch: 'main', url: 'https://github.com/kiran5108/Devops.git'
             }
         }
 
@@ -26,8 +26,7 @@ pipeline {
         stage('build') {
             steps{
                 sh '''
-                    make clean
-                    make
+                   make
                 '''
             }
         }
@@ -39,8 +38,8 @@ pipeline {
         }
         stage('archive and save'){
             steps{
-                archiveArtifacts artifacts: 'ABC.exe', followSymlinks: false
-                sh 'scp -v -o StrictHostKeyChecking=no *.exe ubuntu@172.31.12.87:/home/ubuntu/cbuilds/ABC_$(date +%d_%m_%Y_%H_%M_%S).exe'
+                archiveArtifacts artifacts: 'Application.exe', followSymlinks: false
+                sh 'scp -v -o StrictHostKeyChecking=no *.exe ubuntu@172.31.57.58:/home/ubuntu/buildc/Application_$(date +%d_%m_%Y_%H_%M_%S).exe'
             }
         }
 
