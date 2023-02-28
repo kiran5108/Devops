@@ -5,6 +5,7 @@ pipeline {
     stages{
         stage('get code') {
             steps{
+                echo "getting the jenkins file from github"
                 git branch: 'main', url: 'https://github.com/kiran5108/Devops.git'
             }
         }
